@@ -11,11 +11,19 @@ screen = pygame.display.set_mode([WIDTH, HEIGHT])
 bgs = []
 banners = []
 guns = []
-level = 0
+level = 1
 for i in range(1,4):
     bgs.append(pygame.image.load(f'assets/bgs/{i}.png'))
-    banners.append(pygame.image.load(f'assets/bgs/{i}.png'))
-    guns.append(pygame.image.load(f'assets/bgs/{i}.png'))
+    banners.append(pygame.image.load(f'assets/banners/{i}.png'))
+    guns.append(pygame.image.load(f'assets/guns/{i}.png'))
+
+def draw_gun():
+    mouse_pos = pygame.mouse.get_pos()
+    gun_point = (WIDTH/2, HEIGHT - 200)
+    lasers = ['red', 'purple', 'green']
+    clicks = pygame.mouse.get_pressed()
+    if mouse_pos[0] != gun_point[0]:
+        slope = (mouse_pos[1] - gun_point[1])/(mouse_pos[0] - gun_point[0])
 
 run = True
 while run:
@@ -24,6 +32,9 @@ while run:
     screen.fill('black')
     screen.blit(bgs[level - 1], (0,0))
     screen.blit(banners[level - 1], (0, HEIGHT - 200))
+
+    if level > 0:
+        draw_gun()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
