@@ -16,3 +16,18 @@ for i in range(1,4):
     bgs.append(pygame.image.loaf(f'assets/bgs/{i}.png'))
     banners.append(pygame.image.loaf(f'assets/bgs/{i}.png'))
     guns.append(pygame.image.loaf(f'assets/bgs/{i}.png'))
+
+run = True
+while run:
+    timer.tick(fps)
+
+    screen.fill('black')
+    screen.blit(bgs[level - 1], (0,0))
+    screen.blit(banners[level - 1], (0, HEIGHT - 200))
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+    pygame.display.flip()
+pygame.quit()
